@@ -1,0 +1,4 @@
+20241030	11:34:00	c74a85c3-a2ef-449b-82c2-f0c18eb9c477	Error: Not allowed by CORS
+20241030	11:34:05	70c2e22e-e825-464a-a67c-770aaa113be6	Error: Not allowed by CORS
+20241030	11:34:42	4f70a7dc-89dc-45e9-bf46-e7dd1418d3fa	Error: Not allowed by CORS
+20241101	09:58:14	20464b53-7ae3-4e93-b449-93bc15b099cc	SyntaxError: Unexpected token } in JSON at position 48
