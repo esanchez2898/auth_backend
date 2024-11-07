@@ -1,38 +1,37 @@
-const usersDB = {
-    users: require('../model/users.json'),
-    setUsers: function (data) { this.users = data }
-}
-
+const db = require('../db.js')
 const jwt = require('jsonwebtoken')
 require('dotenv').config()
 
 
-const handleRefresh = (req, res) => {
+const handleRefresh = async (req, res) => {
     const cookies = req.cookies
     if (!cookies?.jwt) return res.sendStatus(401) // 401 Unauthorized
     console.log("testtt refreshhhhhh: ", cookies.jwt)
     const refreshToken = cookies.jwt
 
-    const foundUser = usersDB.users.find(person => person.refreshToken === refreshToken)
+
+    const foundUser = await db('test_users').where({ refresh_token: refreshToken }).first()
+    console.log("foundUser: ", foundUser)
     if (!foundUser) return res.sendStatus(403)  // 403 Forbidden
 
     jwt.verify(
         refreshToken,
         process.env.REFRESH_TOKEN_SECRET,
-        (err, decoded) => {
+        async (err, decoded) => {
             if (err || foundUser.username !== decoded.username) return res.sendStatus(403)  // 403 Forbidden
 
-            const roles = Object.values(foundUser.roles)
-
+            //const roles2 = Object.values(foundUser.roles)
+            const roles = await db('test_user_roles').where({ user_id: foundUser.user_id }).first()
+            console.log("roles: ", roles)
             const accessToken = jwt.sign(
                 {
                     "UserInfo": {
                         "username": decoded.username,
-                        "roles": roles
+                        "roles": roles.role_id
                     }
                 },
                 process.env.ACCESS_TOKEN_SECRET,
-                { expiresIn: '30s' }
+                { expiresIn: '300s' }
             )
             res.json({ accessToken })
         }

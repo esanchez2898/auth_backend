@@ -1,5 +1,3 @@
-//1. Configuración Inicial
-
 const express = require('express')
 const app = express()
 const path = require('path')
@@ -8,7 +6,7 @@ const PORT = process.env.PORT || 3500
 
 
 
-// 2. Importando Middleware
+// Middleware
 
 const { logger } = require('./middleware/logEvents')
 const credentials = require('./middleware/credentials')
@@ -21,8 +19,7 @@ const errorHandler = require('./middleware/errorHandler')
 
 
 
-
-//3. Aplicación de Middlewares
+// Aplicación de Middlewares
 
 app.use(logger)                                             // Custom middleware to log each HTTP request to a log file                 // ?
 app.use(credentials);                                       // Primero, activa credenciales si el origen está permitido                 // ????
@@ -55,9 +52,9 @@ app.use('/logout', require('./routes/logout'))
 
 
 // 5. Protección de Rutas con Autenticación
-
-app.use(verifyJWT) // this is like a waterfall, so everithing after that it's going to be protected
 app.use('/', require('./routes/root'))
+app.use(verifyJWT) // this is like a waterfall, so everithing after that it's going to be protected
+app.use('/todo', require('./routes/todo'))
 app.use('/employees', require('./routes/api/employees'))
 
 

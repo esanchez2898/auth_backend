@@ -2,3 +2,17 @@
 20241030	11:34:05	70c2e22e-e825-464a-a67c-770aaa113be6	Error: Not allowed by CORS
 20241030	11:34:42	4f70a7dc-89dc-45e9-bf46-e7dd1418d3fa	Error: Not allowed by CORS
 20241101	09:58:14	20464b53-7ae3-4e93-b449-93bc15b099cc	SyntaxError: Unexpected token } in JSON at position 48
+20241105	10:29:12	e41469dc-e6e5-4bf8-9e58-f8e14bcd9c64	TypeError: req.roles.map is not a function
+20241105	10:29:12	712c7c67-8eaf-4041-8061-44533e5daca8	TypeError: req.roles.map is not a function
+20241105	10:29:12	08a69a65-b061-45a4-8ac5-46e0fdcfc976	TypeError: req.roles.map is not a function
+20241105	10:30:25	fa7abae8-86df-486a-bd22-df27af1df4ee	TypeError: req.roles.map is not a function
+20241105	10:30:25	a996b4e2-ad61-4eea-ac87-b0c7f9ba036a	TypeError: req.roles.map is not a function
+20241105	10:30:25	29e5fa79-535d-4426-9088-d591d0bc68be	TypeError: req.roles.map is not a function
+20241105	10:30:25	6158e0b5-966a-4f12-a58a-97bcf4d892d7	TypeError: req.roles.map is not a function
+20241105	10:30:25	628f8c7a-fced-4c03-9999-cfe01c5eaa79	TypeError: req.roles.map is not a function
+20241105	10:30:26	2553ce75-be23-48e3-9e49-35f8bc1ecae1	TypeError: req.roles.map is not a function
+20241105	10:30:26	b8c96f01-f06c-464d-98c6-f12e039f030e	TypeError: req.roles.map is not a function
+20241105	10:30:26	7e091718-34f2-4928-a89f-38c3103c4d82	TypeError: req.roles.map is not a function
+20241105	10:30:26	7b2b4da0-6334-4c3a-a6d6-cd86d3d833bd	TypeError: req.roles.map is not a function
+20241105	10:34:32	10439102-5340-4bc0-9521-2348f2e8ec9c	TypeError: req.roles.map is not a function
+20241105	12:18:12	a5d5d441-b9c7-4070-b997-925bd04c8343	Error: ENOENT: no such file or directory, stat '/home/esanchez2898/codementor/node/nodejs_web_server/views/index.html'

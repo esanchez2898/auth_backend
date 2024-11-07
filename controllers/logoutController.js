@@ -1,9 +1,4 @@
-const usersDB = {
-    users: require('../model/users.json'),
-    setUsers: function (data) { this.users = data }
-}
-const fsPromises = require('fs').promises;
-const path = require('path');
+const db = require('../db.js')
 
 const handleLogout = async (req, res) => {
     // On client, also delete the accessToken
@@ -13,20 +8,19 @@ const handleLogout = async (req, res) => {
     const refreshToken = cookies.jwt;
 
     // Is refreshToken in db?
-    const foundUser = usersDB.users.find(person => person.refreshToken === refreshToken);
+    const foundUser = await db('test_users').where({ refresh_token: refreshToken }).first()
     if (!foundUser) {
         res.clearCookie('jwt', { httpOnly: true, sameSite: 'None', secure: true });
         return res.sendStatus(203);
     }
 
     // Delete refreshToken in db
-    const otherUsers = usersDB.users.filter(person => person.refreshToken !== foundUser.refreshToken);
-    const currentUser = { ...foundUser, refreshToken: '' };
-    usersDB.setUsers([...otherUsers, currentUser]);
-    await fsPromises.writeFile(
-        path.join(__dirname, '..', 'model', 'users.json'),
-        JSON.stringify(usersDB.users)
-    );
+    await db('test_users')
+            .where({ username: foundUser.username  }) // Encuentra al usuario por su username
+            .update({
+                refresh_token: null, // Establece el refresh_token en null
+                updated_at: db.fn.now() // Opcional: registra la fecha de actualización
+            });
 
     res.clearCookie('jwt', { httpOnly: true, sameSite: 'None', secure: false }); // secure: false just in develpment
     res.sendStatus(200);

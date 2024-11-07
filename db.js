@@ -1,5 +1,5 @@
-import knex from 'knex';
-import dotenv from 'dotenv';
+const knex = require('knex');
+const dotenv = require('dotenv');
 
 dotenv.config();
 
@@ -11,9 +11,9 @@ const db = knex({
         password: process.env.PW,
         database: process.env.DB,
         ssl: {
-            rejectUnauthorized: false // Develop enviroment
+            rejectUnauthorized: false // Entorno de desarrollo
         }
     }
 });
 
-export default db;
+module.exports = db;
