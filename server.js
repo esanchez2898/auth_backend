@@ -6,6 +6,7 @@ const PORT = process.env.PORT || 3500
 
 
 
+
 // Middleware
 
 const { logger } = require('./middleware/logEvents')
@@ -13,8 +14,9 @@ const credentials = require('./middleware/credentials')
 const cors = require('cors')
 const corsOptions = require('./config/corsOptions')
 const cookieParser = require('cookie-parser')
-const verifyJWT = require('./middleware/verifyJWT')
+//const verifyJWT = require('./middleware/verifyJWT')
 const errorHandler = require('./middleware/errorHandler')
+
 
 
 
@@ -55,8 +57,8 @@ app.use('/logout', require('./routes/logout'))
 // 5. Protección de Rutas con Autenticación
 app.use('/', require('./routes/root'));
 // app.use(verifyJWT) this is like a waterfall, so everithing after that it's going to be protected
-app.use('/todo', require('./routes/todo'))
-app.use('/employees', require('./routes/api/employees'))
+app.use('/todo', require('./routes/api/todo'))
+//app.use('/employees', require('./routes/api/employees'))
 
 
 
@@ -74,7 +76,6 @@ app.all('*', (req, res) => { // all http methods at ones
         res.type('txt').send("404 Not Found")
     }
 })
-
 
 
 
