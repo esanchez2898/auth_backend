@@ -51,12 +51,12 @@ app.use('/logout', require('./routes/logout'))
 
 
 
+
 // 5. Protección de Rutas con Autenticación
-app.use('/', require('./routes/root'))
-app.use(verifyJWT) // this is like a waterfall, so everithing after that it's going to be protected
+app.use('/', require('./routes/root'));
+// app.use(verifyJWT) this is like a waterfall, so everithing after that it's going to be protected
 app.use('/todo', require('./routes/todo'))
 app.use('/employees', require('./routes/api/employees'))
-
 
 
 
@@ -74,6 +74,7 @@ app.all('*', (req, res) => { // all http methods at ones
         res.type('txt').send("404 Not Found")
     }
 })
+
 
 
 
